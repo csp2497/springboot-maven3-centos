@@ -30,6 +30,11 @@ ENV MAVEN_HOME /usr/share/maven
 # Add configuration files, bashrc and other tweaks
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
+RUN chmod +x ./s2i/bin/assemble 
+RUN chmod +x ./s2i/bin/run 
+RUN chmod +x ./s2i/bin/save-artifacts 
+RUN chmod +x ./s2i/bin/usage
+
 RUN chown -R 1001:0 ./
 USER 1001
 
