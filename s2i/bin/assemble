@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -e
+
 echo "starting assemble script.."
 
-set -e
+# Fix source directory permissions
+fix-permissions ./
 
 # restore maven dependencies downloaded in a previous build,
 # so they do not have to be downloaded again.
@@ -10,15 +13,15 @@ set -e
 # in which the target image name is an existing docker image which contains
 # dependencies from a prior build execution.
 function restore_saved_artifacts() {
-  echo "trying to restore saved artifacts.."
   if [ "$(ls -A /tmp/artifacts/ 2>/dev/null)" ]; then
     echo -n "Restoring saved artifacts from prior build..."
     mv /tmp/artifacts/* /tmp/artifacts/.[!.]* $HOME/.
-    echo "..restore finished"
   fi
 }
 
+echo "---> trying to restore saved artifacts.."
 restore_saved_artifacts
+echo "---> restore finished"
 
 echo "---> Installing application source"
 cp -Rf /tmp/src/. ./
