@@ -70,7 +70,7 @@ $ curl 127.0.0.1:8080
 In order to test your changes to this STI image or to the STI scripts, you can use the `test/run` script. Before that, you have to build the 'candidate' image:
 
 ```
-$ docker build -t codecentric/springboot-maven3-centos-candidate .
+$ docker build -t csp2497/springboot-maven3-centos-candidate .
 ```
 
 After that you can execute `./test/run`. You can also use `make test` to automate this.
