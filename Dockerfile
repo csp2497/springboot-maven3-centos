@@ -30,12 +30,12 @@ ENV MAVEN_HOME /usr/share/maven
 # Add configuration files, bashrc and other tweaks
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
-# To add executable permission to all scripts
-RUN chmod +x $STI_SCRIPTS_PATH/* 
+#RUN chown -R 1001:0 ./  
 
-RUN chown -R 1001:0 ./  && \
+# To add executable permission to all scripts
+RUN chown -R 1001:0 /opt/app-root && \
     chmod 775 $STI_SCRIPTS_PATH/*
-   
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
