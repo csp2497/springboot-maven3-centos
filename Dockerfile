@@ -34,8 +34,7 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 # To add executable permission to all scripts
 RUN chown -R 1001:0 /opt/app-root && \
-    chmod 775 $STI_SCRIPTS_PATH/* && \
-    chmod +x /usr/libexec/s2i/*
+    chmod 775 $STI_SCRIPTS_PATH/*
 
 USER 1001
 
